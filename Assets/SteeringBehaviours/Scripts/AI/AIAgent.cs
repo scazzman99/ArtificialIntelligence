@@ -7,8 +7,8 @@ using UnityEngine.AI;
     public class AIAgent : MonoBehaviour {
 
         #region Vars
-        public Transform target;
         public NavMeshAgent agent;
+        private Vector3 point = Vector3.zero;
         #endregion
 
         // Use this for initialization
@@ -18,7 +18,15 @@ using UnityEngine.AI;
 
         // Update is called once per frame
         void Update() {
-            agent.SetDestination(target.position);
+            if (point.magnitude > 0) // if the point magnitude is literally anything then run
+            {
+                agent.SetDestination(point);
+            }
+        }
+
+        public void SetTarget(Vector3 point) //this is our own function that will be called from Director
+        {
+            this.point = point;
         }
     }
 }
