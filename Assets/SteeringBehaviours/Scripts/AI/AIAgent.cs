@@ -1,32 +1,42 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic; //lets you use lists
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.AI; //lets you use navmeshagent
 
     namespace SteeringBehaviours {
     public class AIAgent : MonoBehaviour {
 
         #region Vars
-        public NavMeshAgent agent;
-        private Vector3 point = Vector3.zero;
+        public float maxSpeed;
+        public float maxDist;
+        public bool updatePos;
+        public bool updateRot;
+        public Vector3 velocity;
+        private Vector3 force;
+        private NavMeshAgent agent;
+        private List<SteeringBehaviour> behaviours;
         #endregion
 
-        // Use this for initialization
-        void Start() {
-
-        }
-
-        // Update is called once per frame
-        void Update() {
-            if (point.magnitude > 0) // if the point magnitude is literally anything then run
-            {
-                agent.SetDestination(point);
-            }
-        }
-
-        public void SetTarget(Vector3 point) //this is our own function that will be called from Director
+        private void Awake()
         {
-            this.point = point;
+            
         }
+
+        private void Update()
+        {
+            
+        }
+
+        public void ComputeForces()
+        {
+
+        }
+
+        public void ApplyVelocity()
+        {
+
+        }
+
+
     }
 }

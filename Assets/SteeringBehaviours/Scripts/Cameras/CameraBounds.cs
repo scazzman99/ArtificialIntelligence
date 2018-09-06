@@ -44,5 +44,7 @@ public class CameraBounds : MonoBehaviour
             incomingPos.y = pos.y - halfSize.y;
         }
 
+        return incomingPos;
+
     }
 }

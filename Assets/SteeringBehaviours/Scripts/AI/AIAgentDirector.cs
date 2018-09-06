@@ -30,7 +30,7 @@ namespace SteeringBehaviours
             {
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    agent.SetTarget(mouseHit.point); //use SetTarget here for the AI agent. It will call this from AIAgent.
+                    //agent.SetTarget(mouseHit.point); //use SetTarget here for the AI agent. It will call this from AIAgent.
                 }
             }
         }
