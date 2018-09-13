@@ -9,14 +9,15 @@ namespace SteeringBehaviours
         public Transform target;
         public float stopDist;
         // Use this for initialization
-        void Start()
-        {
-
-        }
+ 
 
         public override Vector3 GetForce()
         {
-            return base.GetForce();
+            //get direction to target
+            Vector3 vel = target.position - agent.transform.position;
+            //normalise the vector
+            vel.Normalize();
+            return vel * agent.maxSpeed;
         }
         
        

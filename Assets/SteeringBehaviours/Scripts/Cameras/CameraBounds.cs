@@ -21,27 +21,36 @@ public class CameraBounds : MonoBehaviour
 
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, size);
+    }
+
     //GetAdjustedPosition returns restricted position of camera after function runs
     public Vector3 GetAdjustedPosition(Vector3 incomingPos)
     {
         Vector3 pos = transform.position;
         Vector3 halfSize = size * 0.5f;
 
+        //Ifi incoming pos is out of bounds of Z
         if(incomingPos.z > pos.z + halfSize.z)
         {
+            //cap it
             incomingPos.z = pos.z + halfSize.z;
         }
         if(incomingPos.z < pos.z - halfSize.z)
         {
             incomingPos.z = pos.z - halfSize.z;
         }
-        if(incomingPos.y > pos.y + halfSize.y)
+        //Same for the bounds of x
+        if(incomingPos.x > pos.x + halfSize.x)
         {
-            incomingPos.y = pos.y + halfSize.y;
+            incomingPos.x = pos.x + halfSize.x;
         }
-        if(incomingPos.y < pos.y - halfSize.y)
+        if(incomingPos.x < pos.x - halfSize.x)
         {
-            incomingPos.y = pos.y - halfSize.y;
+            incomingPos.x = pos.x - halfSize.x;
         }
 
         return incomingPos;
