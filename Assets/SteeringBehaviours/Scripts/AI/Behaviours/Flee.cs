@@ -11,7 +11,13 @@ namespace SteeringBehaviours
 
         public override Vector3 GetForce()
         {
-            return base.GetForce();
+            if (target)
+            {
+                Vector3 vel = target.position - agent.transform.position;
+                vel.Normalize();
+                return -1 * vel * agent.maxSpeed;
+            }
+            return Vector3.zero;
         }
     }
 }

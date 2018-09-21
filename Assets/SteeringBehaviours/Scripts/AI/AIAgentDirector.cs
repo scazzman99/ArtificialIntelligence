@@ -8,7 +8,7 @@ namespace SteeringBehaviours
     {
 
         #region Vars
-        public AIAgent agent;
+        public AIAgent[] agents;
         public Transform placeholdPoint;
         #endregion
         // Use this for initialization
@@ -26,18 +26,28 @@ namespace SteeringBehaviours
      
         private void FixedUpdate()
         {
-
             if (Input.GetMouseButtonDown(0))
             {
-                Seek seek = agent.GetComponent<Seek>();
-                if (seek)
+                Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit mouseHit;
+                if (Physics.Raycast(camRay, out mouseHit, 1000f))
                 {
-                    Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit mouseHit;
-                    if(Physics.Raycast(camRay, out mouseHit, 1000f))
+                    Flee flee = GetComponent<Flee>();
+                    Seek seek = GetComponent<Seek>();
+                    placeholdPoint.position = mouseHit.point;
+
+                    foreach (var agent in agents)
                     {
-                        placeholdPoint.position = mouseHit.point;
-                        seek.target = placeholdPoint;
+                        
+                        if (seek)
+                        {
+                            seek.target = placeholdPoint;
+                        }
+                        else if (flee)
+                        {
+                            flee.target = placeholdPoint;
+                        }
+
                     }
                 }
             }

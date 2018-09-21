@@ -11,7 +11,7 @@ namespace SteeringBehaviours {
         public AIAgent agent; //AIAgent owner of the behaviour
         
         void Awake() {
-
+            agent = GetComponent<AIAgent>();
         }
 
         public virtual Vector3 GetForce()
